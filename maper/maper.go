@@ -1,5 +1,11 @@
 package maper
 
+import (
+	"fmt"
+	"reflect"
+	"strings"
+)
+
 // @Title  struct 转 map
 // @Description  struct 中的tag 转换成 map
 // @Author youjixiaozhao
@@ -116,7 +122,6 @@ func RawFieldNamesByMart(in interface{}, mark string, tag string) []string {
 	for i := 0; i < v.NumField(); i++ {
 		fi := typ.Field(i)
 		if tagv := fi.Tag.Get(tag); tagv != "" {
-			fmt.Println(tagv)
 			var tagArr []string = strings.Split(tagv, ",")
 
 			if stringx.Contains(tagArr, mark) {
