@@ -24,7 +24,7 @@ func StrNow() string {
 }
 
 //格式化时间格式
-func (t string) (string, error) {
+func ConvertRFC3339TimeFormat(t string) (string, error) {
 	tmp, err := time.Parse(time.RFC3339, t)
 	if err != nil {
 		return t, nil

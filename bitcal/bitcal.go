@@ -1,5 +1,10 @@
 package bitcal
 
+import (
+	"strconv"
+	"strings"
+)
+
 func ParseByBitOrAfter(id int) string {
 	var bitArr []string = ParseByBitOrAfterArr(id)
 	if len(bitArr) == 0 {
