@@ -5,6 +5,17 @@ import (
 	"strings"
 )
 
+//字符串数组求和
+func AssignByBitOrAfter(ids string) int64 {
+	var id int64 = 0
+	idArr := strings.Split(strings.Trim(ids, ","), ",")
+	for _, val := range idArr {
+		tmp, _ := strconv.Atoi(val)
+		id |= int64(tmp)
+	}
+
+	return id
+}
 func ParseByBitOrAfter(id int64) string {
 	var bitArr []string = ParseByBitOrAfterArr(id)
 	if len(bitArr) == 0 {
