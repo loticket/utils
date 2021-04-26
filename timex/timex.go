@@ -24,7 +24,7 @@ func StrNow() string {
 }
 
 //格式化时间格式
-func ConvertRFC3339TimeFormat(t string) (string, error) {
+func (t string) (string, error) {
 	tmp, err := time.Parse(time.RFC3339, t)
 	if err != nil {
 		return t, nil
@@ -65,7 +65,7 @@ func Yesterday() (string, string) {
 //判断当前时间时间是否在中间
 func CompareTime(startDate string, endDate string) (bool, error) {
 	loc, _ := time.LoadLocation("Asia/Shanghai")
-	var nowTime time.time = time.Now().In(loc)
+	var nowTime time.Time = time.Now().In(loc)
 
 	starTime, err := time.ParseInLocation(timeFmt, startDate, loc)
 	if err != nil {
@@ -78,7 +78,7 @@ func CompareTime(startDate string, endDate string) (bool, error) {
 		return false, err
 	}
 
-	if nowtime.After(starTime) && nowtime.Before(endTime) {
+	if nowTime.After(starTime) && nowTime.Before(endTime) {
 		return true, nil
 	}
 
