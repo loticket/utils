@@ -14,6 +14,22 @@ func ParseByBitOrAfter(id int) string {
 	return strings.Join(bitArr, ",")
 }
 
+func ParseByBitToString(id int, maps map[string]string) string {
+	var arr []string = make([]string, 0)
+	for i := 0; i < id; i++ {
+		tmp := pow(2, i)
+		if id&tmp == tmp {
+			var idStr string = strconv.Itoa(tmp)
+			if v, ok := maps[idStr]; ok {
+				arr = append(arr, v)
+			}
+
+		}
+	}
+
+	return strings.Join(arr, ",")
+}
+
 func ParseByBitOrAfterArr(id int) []string {
 	var arr []string = make([]string, 0)
 	for i := 0; i < id; i++ {
