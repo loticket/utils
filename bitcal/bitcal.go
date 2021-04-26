@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func ParseByBitOrAfter(id int) string {
+func ParseByBitOrAfter(id int64) string {
 	var bitArr []string = ParseByBitOrAfterArr(id)
 	if len(bitArr) == 0 {
 		return ""
@@ -14,12 +14,13 @@ func ParseByBitOrAfter(id int) string {
 	return strings.Join(bitArr, ",")
 }
 
-func ParseByBitToString(id int, maps map[string]string) string {
+func ParseByBitToString(id int64, maps map[string]string) string {
 	var arr []string = make([]string, 0)
-	for i := 0; i < id; i++ {
-		tmp := pow(2, i)
+	var i int64 = 0
+	for i = 0; i < id; i++ {
+		var tmp int64 = pow(2, i)
 		if id&tmp == tmp {
-			var idStr string = strconv.Itoa(tmp)
+			var idStr string = strconv.Itoa(int(tmp))
 			if v, ok := maps[idStr]; ok {
 				arr = append(arr, v)
 			}
@@ -30,19 +31,20 @@ func ParseByBitToString(id int, maps map[string]string) string {
 	return strings.Join(arr, ",")
 }
 
-func ParseByBitOrAfterArr(id int) []string {
+func ParseByBitOrAfterArr(id int64) []string {
 	var arr []string = make([]string, 0)
-	for i := 0; i < id; i++ {
-		tmp := pow(2, i)
+	var i int64 = 0
+	for i = 0; i < id; i++ {
+		var tmp int64 = pow(2, i)
 		if id&tmp == tmp {
-			arr = append(arr, strconv.Itoa(tmp))
+			arr = append(arr, strconv.Itoa(int(tmp)))
 		}
 	}
 
 	return arr
 }
 
-func pow(x float64, n int) int {
+func pow(x float64, n int64) int64 {
 	if x == 0 {
 		return 0
 	}
@@ -51,10 +53,10 @@ func pow(x float64, n int) int {
 		result = 1 / result
 	}
 
-	return int(result)
+	return int64(result)
 }
 
-func calPow(x float64, n int) float64 {
+func calPow(x float64, n int64) float64 {
 	if n == 0 {
 		return 1
 	}
