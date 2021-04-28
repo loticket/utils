@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-ffunc Krand(size int, kind int) string {
+func Krand(size int, kind int) string {
 	ikind, kinds, result := kind, [][]int{[]int{10, 48}, []int{26, 97}, []int{26, 65}}, make([]byte, size)
 	is_all := kind > 2 || kind < 0
 	rand.Seed(time.Now().UnixNano())
