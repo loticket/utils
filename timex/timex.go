@@ -8,6 +8,12 @@ import (
 
 const timeFmt = "2006-01-02 15:04:05"
 
+//获取当前的时间戳
+func NowTimeStamp() int64 {
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+	return time.Now().In(loc).Unix()
+}
+
 //解析当前日期 转换成 时间
 func ParseStrTime(timeStr string) (time.Time, error) {
 	t, err := time.ParseInLocation(timeFmt, timeStr, time.Local)
