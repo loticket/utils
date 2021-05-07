@@ -6,7 +6,7 @@ import (
 )
 
 func Sha1String(plainText string) string {
-	return Sha1(plainText)
+	return Sha1([]byte(plainText))
 }
 
 // SHA1 SHA1哈希加密
