@@ -1,4 +1,4 @@
-package utils
+package encry
 
 import (
 	"bytes"
