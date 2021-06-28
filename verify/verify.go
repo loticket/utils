@@ -2,6 +2,8 @@ package verify
 
 import (
 	"regexp"
+	"strconv"
+	"strings"
 )
 
 //判断时间格式是否正确 - xxxx-xx-xx 00:00:00
@@ -13,12 +15,6 @@ func VerifyTimeDate(content string) bool {
 //验证手机号码
 func VerifyMobile(content string) bool {
 	reg := regexp.MustCompile(`^[1][3-9][0-9]{9}$`)
-	return reg.Match([]byte(content))
-}
-
-//验证身份证号码
-func VerifyIdcard(content string) bool {
-	reg := regexp.MustCompile(`^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$`)
 	return reg.Match([]byte(content))
 }
 
@@ -50,4 +46,34 @@ func VerifyBankCode(content string) bool {
 func VerifyInteger(content string) bool {
 	reg := regexp.MustCompile(`^-?\\d+$`)
 	return reg.Match([]byte(content))
+}
+
+// 身份证号正确性检查
+func VerifyIdcard(idCard string) bool {
+	idCard = strings.ToUpper(idCard)
+
+	reg := regexp.MustCompile(`^[0-9]{17}[0-9X]$`)
+	if reg.MatchString(idCard) == false {
+		return false
+	}
+	return checkIdCardCode(idCard)
+}
+
+// 身份证校验码的计算方法：
+//  1、将身份证号码前面的17位数分别乘以不同的加权因子，见： weights
+//  2、将这17位数字和加权因子相乘的结果相加，得到的结果再除以11，得到余数 m
+//  3、余数m作为位置值，在校验码数组 codes 中找到对应的值，就是身份证号码的第18位校验码
+func checkIdCardCode(id string) bool {
+	var weights []int    = []int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
+	var codes   []string = []string{"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"}
+
+	var sum int = 0
+	for i := 0; i < 17; i++ {
+		n, _ := strconv.Atoi(string(id[i]))
+		sum += n * weights[i]
+	}
+
+	m := sum % 11
+
+	return codes[m] == id[17:]
 }
