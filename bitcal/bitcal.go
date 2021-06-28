@@ -16,6 +16,9 @@ func AssignByBitOrAfter(ids string) int64 {
 
 	return id
 }
+
+//解析一个整数得到一个字符串，每个用,隔开
+//该数组中全为2的倍数
 func ParseByBitOrAfter(id int64) string {
 	var bitArr []string = ParseByBitOrAfterArr(id)
 	if len(bitArr) == 0 {
@@ -24,6 +27,8 @@ func ParseByBitOrAfter(id int64) string {
 
 	return strings.Join(bitArr, ",")
 }
+
+
 
 func ParseByBitToString(id int64, maps map[string]string) string {
 	var arr []string = make([]string, 0)
@@ -42,6 +47,8 @@ func ParseByBitToString(id int64, maps map[string]string) string {
 	return strings.Join(arr, ",")
 }
 
+//解析一个整数得到一个字符串数组
+//该数组中全为2的次方数 1，2，4，8，16，32，64，128，256
 func ParseByBitOrAfterArr(id int64) []string {
 	var arr []string = make([]string, 0)
 	var i int64 = 0
