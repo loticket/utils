@@ -17,7 +17,7 @@ type TreesItem struct {
 	ChildrenNodes   []TreesItem `json:"children"`
 }
 
-func (m *TreesList) processToTree(pid int64, level int64) []TreesItem {
+func (m *TreesList) ProcessToTree(pid int64, level int64) []TreesItem {
 	var menuTree []TreesItem
 	if level == 4 {
 		return menuTree
@@ -29,7 +29,7 @@ func (m *TreesList) processToTree(pid int64, level int64) []TreesItem {
 	}
 
 	for _, v := range list {
-		child := m.processToTree(v.Id, level+1)
+		child := m.ProcessToTree(v.Id, level+1)
 		menuTree = append(menuTree, TreesItem{v, child})
 	}
 

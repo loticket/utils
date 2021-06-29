@@ -15,15 +15,15 @@ type UserMenus struct {
 
 //无限级分类
 //最多支持4级分类
-type menuList []UserMenus
+type MenuList []UserMenus
 
-type menuItem struct {
+type MenuItem struct {
 	UserMenus
-	ChildrenNodes   []menuItem `json:"children"`
+	ChildrenNodes   []MenuItem `json:"children"`
 }
 
-func (m *menuList) processToTree(pid int64, level int64) []menuItem {
-	var menuTree []menuItem
+func (m *MenuList) ProcessToTree(pid int64, level int64) []MenuItem {
+	var menuTree []MenuItem
 	if level == 4 {
 		return menuTree
 	}
@@ -34,14 +34,14 @@ func (m *menuList) processToTree(pid int64, level int64) []menuItem {
 	}
 
 	for _, v := range list {
-		child := m.processToTree(v.Id, level+1)
-		menuTree = append(menuTree, menuItem{v, child})
+		child := m.ProcessToTree(v.Id, level+1)
+		menuTree = append(menuTree, MenuItem{v, child})
 	}
 
 	return menuTree
 }
 
-func (m *menuList) findChildren(pid int64) []UserMenus {
+func (m *MenuList) findChildren(pid int64) []UserMenus {
 	child := []UserMenus{}
 
 	for _, v := range *m {
