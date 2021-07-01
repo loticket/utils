@@ -24,6 +24,17 @@ func Cartesian(sets ...[]GoodsSkus) [][]GoodsSkus {
 	return product
 }
 
+func CartesianArr(sets ...[]GoodsSkus) []GoodsSkus {
+	lens := func(i int) int { return len(sets[i]) }
+	product := []GoodsSkus{}
+	for ix := make([]int, len(sets)); ix[0] < lens(0); nextIndex(ix, lens) {
+		for j, k := range ix {
+			product = append(product, sets[j][k])
+		}
+	}
+	return product
+}
+
 func nextIndex(ix []int, lens func(i int) int) {
 	for j := len(ix) - 1; j >= 0; j-- {
 		ix[j]++
