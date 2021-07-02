@@ -79,7 +79,7 @@ func TestCat(t *testing.T){
 		},
 	}
 
-	dd:= Cartesian(GoodsSkusArr1,GoodsSkusArr2,GoodsSkusArr3)
+	dd:= CartesianArr(GoodsSkusArr1,GoodsSkusArr2,GoodsSkusArr3)
 	fmt.Println(len(dd))
 	fmt.Println(dd)
 }

@@ -67,3 +67,47 @@ func ArrayUnique(a []string) (ret []string) {
 	}
 	return
 }
+
+//@action 比较两个切片是否相同
+//@param  a 整形切片  b 整形切片
+//@return  true 相同  false 不相同
+func SliceEqualInt(a, b []int64) bool {
+	if len(a) != len(b) {
+		return false
+	}
+
+	if (a == nil) != (b == nil) {
+		return false
+	}
+
+	b = b[:len(a)]
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
+//@action 比较两个切片是否相同
+//@param  a interface切片  b interface切片
+//@return  true 相同  false 不相同
+func SliceEqualInterface(a, b []interface{}) bool {
+	if len(a) != len(b) {
+		return false
+	}
+
+	if (a == nil) != (b == nil) {
+		return false
+	}
+
+	b = b[:len(a)]
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+
+	return true
+}
