@@ -24,4 +24,6 @@
 ####  aliasmethod
   > 概率抽奖(离散采样算法)
 
+## 使用 go get github.com/loticket/utils
+
 
