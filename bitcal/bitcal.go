@@ -49,6 +49,21 @@ func ParseByBitToString(id int64, maps map[string]string) string {
 
 //解析一个整数得到一个字符串数组
 //该数组中全为2的次方数 1，2，4，8，16，32，64，128，256
+func ParseByBitOrAfterArrInt(id int64) []int64 {
+	var arr []int64 = make([]int64, 0)
+	var i int64 = 0
+	for i = 0; i < id; i++ {
+		var tmp int64 = pow(2, i)
+		if id&tmp == tmp {
+			arr = append(arr, tmp)
+		}
+	}
+
+	return arr
+}
+
+//解析一个整数得到一个字符串数组
+//该数组中全为2的次方数 1，2，4，8，16，32，64，128，256
 func ParseByBitOrAfterArr(id int64) []string {
 	var arr []string = make([]string, 0)
 	var i int64 = 0
