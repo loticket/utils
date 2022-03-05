@@ -1,11 +1,10 @@
 package stringx
 
 import (
-  "math/rand"
+	"fmt"
+	"math/rand"
 	"time"
-  "fmt"
 )
-
 
 func StrSn(storeId int64) string {
 	var dates string = time.Now().Local().Format("20060102150405")

@@ -28,8 +28,6 @@ func ParseByBitOrAfter(id int64) string {
 	return strings.Join(bitArr, ",")
 }
 
-
-
 func ParseByBitToString(id int64, maps map[string]string) string {
 	var arr []string = make([]string, 0)
 	var i int64 = 0

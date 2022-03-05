@@ -2,10 +2,10 @@ package treex
 
 //用户菜单管理
 type Trees struct {
-	Id          int64          `form:"id,default=0" json:"id"`
-	ParentId    int64          `form:"parent_id,default=0" json:"parent_id"`    // 父菜单ID
-	Name        string         `form:"name" json:"name"`         // 路由名称
-	Content     interface{}    `form:"content" json:"content"`         // 路由名称
+	Id       int64       `form:"id,default=0" json:"id"`
+	ParentId int64       `form:"parent_id,default=0" json:"parent_id"` // 父菜单ID
+	Name     string      `form:"name" json:"name"`                     // 路由名称
+	Content  interface{} `form:"content" json:"content"`               // 路由名称
 }
 
 //无限级分类
@@ -14,7 +14,7 @@ type TreesList []Trees
 
 type TreesItem struct {
 	Trees
-	ChildrenNodes   []TreesItem `json:"children"`
+	ChildrenNodes []TreesItem `json:"children"`
 }
 
 func (m *TreesList) ProcessToTree(pid int64, level int64) []TreesItem {

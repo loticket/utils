@@ -23,8 +23,6 @@ func binarySearch(sortedList []int, lookingFor int) int {
 	return -1
 }
 
-
-
 //@action 排序查找算法
 //@param  sint 整数数组 index 需要查找的整数
 //@return false 没有查找到  true 查询到
@@ -38,7 +36,6 @@ func SearchInt(sint []int, index int) bool {
 	}
 }
 
-
 //@action查询数组中是否包含某一个值 -- 字符串查找
 //@param  strArr 字符串切片 index 需要查找的字符串
 //@return false 没有查找到  true 查询到
@@ -51,7 +48,6 @@ func SearchString(strArr []string, index string) bool {
 		return false
 	}
 }
-
 
 //@action 字符串切片去重
 //@param  a 字符串切片
