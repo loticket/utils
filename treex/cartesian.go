@@ -1,14 +1,13 @@
 package treex
 
-
 //实现商品规格的笛卡尔积
 type GoodsSkus struct {
-	SpecKey         int64
-	SpecId          int64
-	SpecName        string
-	SpecValueKey   int64
-	SpecValueId    int64
-	SpecValue       string
+	SpecKey      int64
+	SpecId       int64
+	SpecName     string
+	SpecValueKey int64
+	SpecValueId  int64
+	SpecValue    string
 }
 
 func Cartesian(sets ...[]GoodsSkus) [][]GoodsSkus {

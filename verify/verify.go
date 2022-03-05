@@ -64,8 +64,8 @@ func VerifyIdcard(idCard string) bool {
 //  2、将这17位数字和加权因子相乘的结果相加，得到的结果再除以11，得到余数 m
 //  3、余数m作为位置值，在校验码数组 codes 中找到对应的值，就是身份证号码的第18位校验码
 func checkIdCardCode(id string) bool {
-	var weights []int    = []int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
-	var codes   []string = []string{"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"}
+	var weights []int = []int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
+	var codes []string = []string{"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"}
 
 	var sum int = 0
 	for i := 0; i < 17; i++ {

@@ -24,11 +24,9 @@ var (
 	ErrPrivateKey      = errors.New("get private key error")
 )
 
-
-
 // 公钥加密
 func RsaPublicEncrypt(data, publicKey string) (string, error) {
-	pubKey,err := getPubKey(publicKey)
+	pubKey, err := getPubKey(publicKey)
 	if err != nil {
 		return "", err
 	}
@@ -42,7 +40,7 @@ func RsaPublicEncrypt(data, publicKey string) (string, error) {
 		return "", err
 	}
 
-	rsadata,errs := ioutil.ReadAll(output)
+	rsadata, errs := ioutil.ReadAll(output)
 	if errs != nil {
 		return "", err
 	}
@@ -52,7 +50,7 @@ func RsaPublicEncrypt(data, publicKey string) (string, error) {
 
 // 私钥加密
 func RsaPriKeyEncrypt(data, privateKey string) (string, error) {
-	prikey,err := getPriKey(privateKey)
+	prikey, err := getPriKey(privateKey)
 	if err != nil {
 		return "", err
 	}
@@ -66,7 +64,7 @@ func RsaPriKeyEncrypt(data, privateKey string) (string, error) {
 		return "", err
 	}
 
-	rsadata,errs := ioutil.ReadAll(output)
+	rsadata, errs := ioutil.ReadAll(output)
 	if errs != nil {
 		return "", err
 	}
@@ -76,7 +74,7 @@ func RsaPriKeyEncrypt(data, privateKey string) (string, error) {
 
 // 公钥解密
 func RsaPublicDecrypt(data, publicKey string) (string, error) {
-	pubkey,err := getPubKey(publicKey)
+	pubkey, err := getPubKey(publicKey)
 	if err != nil {
 		return "", err
 	}
@@ -92,7 +90,7 @@ func RsaPublicDecrypt(data, publicKey string) (string, error) {
 		return "", err
 	}
 
-	rsadata,errs := ioutil.ReadAll(output)
+	rsadata, errs := ioutil.ReadAll(output)
 
 	if errs != nil {
 		return "", err
@@ -103,13 +101,13 @@ func RsaPublicDecrypt(data, publicKey string) (string, error) {
 
 // 私钥解密
 func RsaPriKeyDecrypt(data, privateKey string) (string, error) {
-	prikey,err := getPriKey(privateKey)
+	prikey, err := getPriKey(privateKey)
 	if err != nil {
 		return "", err
 	}
 
 	databs, err := base64.StdEncoding.DecodeString(data)
-    if err != nil {
+	if err != nil {
 		return "", err
 	}
 
@@ -119,7 +117,7 @@ func RsaPriKeyDecrypt(data, privateKey string) (string, error) {
 		return "", err
 	}
 
-	rsadata,errs := ioutil.ReadAll(output)
+	rsadata, errs := ioutil.ReadAll(output)
 
 	if errs != nil {
 		return "", err
@@ -137,7 +135,7 @@ func getPubKey(publickey string) (*rsa.PublicKey, error) {
 %s
 -----END 公钥-----
 `
-	publickey = fmt.Sprintf(pubkey,publickey)
+	publickey = fmt.Sprintf(pubkey, publickey)
 	block, _ := pem.Decode([]byte(publickey))
 	if block == nil {
 		return nil, errors.New("get public key error")
@@ -157,7 +155,7 @@ func getPriKey(privatekey string) (*rsa.PrivateKey, error) {
 %s
 -----END 私钥-----
 `
-	privatekey = fmt.Sprintf(prikey,privatekey)
+	privatekey = fmt.Sprintf(prikey, privatekey)
 	block, _ := pem.Decode([]byte(privatekey))
 	if block == nil {
 		return nil, errors.New("get private key error")
